@@ -31,3 +31,13 @@ output "access_argocd" {
     echo "ArgoCD URL: https://$(kubectl get svc -n argocd argo-cd-argocd-server -o jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
     EOT
 }
+
+output "public_subnet_ids" {
+  description = "Public Subnet IDs"
+  value       = module.vpc.public_subnets
+}
+
+output "cluster_security_group_id" {
+  description = "Cluster Security Group ID"
+  value       = module.eks.cluster_security_group_id
+}
